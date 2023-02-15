@@ -15,7 +15,7 @@ NC= \033[0;0m
 
 
 INC		=
-SRC		=
+SRC		=	src/main.cpp
 
 all:		$(NAME)
 

@@ -27,12 +27,16 @@ int main()
 	std::cout << "pointer = " << second.data() << std::endl;
 	std::cout << "at = " << second.at(1) << std::endl;
 	std::cout << "[]  = " << second[3] << std::endl;
+	std::cout << "max size  = " << second.max_size() << std::endl;
+	std::cout << "capacity  = " << second.capacity() << std::endl;
 //	std::allocator<int>::pointer
 
 	myv[1] = 42;
 	std::cout << "*[] = " << myv[1] << std::endl;
-	std::cout << "*at = " << myv.at(10) << std::endl;
-	std::cout << "front = " << myv.front() << std::endl;
+	std::cout << "*at = " << myv.at(0) << std::endl;
+	std::cout << "*front = " << myv.front() << std::endl;
+	std::cout << "*max size  = " << myv.max_size() << std::endl;
+	std::cout << "*capacity  = " << myv.capacity() << std::endl;
 
 	return 0;
 }

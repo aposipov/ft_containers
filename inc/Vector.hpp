@@ -102,10 +102,26 @@ namespace ft {
 
 		/* ------------------------- capacity ------------------------- */
 //		empty
+		bool empty() const { return _size == 0; }
+
 //		size
+		size_type size() const { return _size; }
+
 //		max_size
+		size_type max_size() const { return _alloc.max_size(); }
+
 //		reserve
+		void reserve(size_type new_cap)
+		{
+			if (new_cap > max_size())
+				throw std::length_error("Error: Vector reserve");
+			if (new_cap <= _capacity)
+				return ;
+
+		}
+
 //		capacity
+		size_type capacity() const { return _capacity; }
 
 		/* ------------------------- modifiers ------------------------- */
 

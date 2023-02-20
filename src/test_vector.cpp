@@ -29,13 +29,29 @@ int main()
 	std::cout << "[]  = " << second[3] << std::endl;
 	std::cout << "max size  = " << second.max_size() << std::endl;
 	std::cout << "capacity  = " << second.capacity() << std::endl;
+	// reserve;
 //	std::allocator<int>::pointer
 
 	myv[1] = 42;
+	std::cout << "*size = " << myv.size() << std::endl;
 	std::cout << "*[] = " << myv[1] << std::endl;
 	std::cout << "*at = " << myv.at(0) << std::endl;
 	std::cout << "*front = " << myv.front() << std::endl;
 	std::cout << "*max size  = " << myv.max_size() << std::endl;
+	std::cout << "*capacity  = " << myv.capacity() << std::endl;
+	myv.reserve(6);
+	std::cout << "*capacity  = " << myv.capacity() << std::endl;
+	myv.push_back(99);
+	std::cout << "*size = " << myv.size() << std::endl;
+//	std::cout << "*back = " << myv.back() << std::endl;
+	std::cout << "*capacity  = " << myv.capacity() << std::endl;
+	std::cout << "*at = " << myv.at(4) << std::endl;
+	myv.push_back(101);
+	std::cout << "*at = " << myv.at(5) << std::endl;
+	std::cout << "*size = " << myv.size() << std::endl;
+	myv.push_back(109);
+	std::cout << "*at = " << myv.at(6) << std::endl;
+	std::cout << "*size = " << myv.size() << std::endl;
 	std::cout << "*capacity  = " << myv.capacity() << std::endl;
 
 	return 0;

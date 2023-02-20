@@ -117,14 +117,43 @@ namespace ft {
 				throw std::length_error("Error: Vector reserve");
 			if (new_cap <= _capacity)
 				return ;
-
+			pointer p = _alloc.allocate(new_cap);
+			for (size_type i = 0; i < _size; i++)
+				_alloc.construct(p + i, (*this)[i]);
+			for (size_type i = 0; i < _size; i++)
+				_alloc.destroy(_array + i);
+			_capacity = new_cap;
+			_array = p;
 		}
 
 //		capacity
 		size_type capacity() const { return _capacity; }
 
 		/* ------------------------- modifiers ------------------------- */
+//		clear
+		void clear()
+		{
+			for (size_type i = 0; i < _size; i++)
+				_alloc.destroy(_array + i);
+			_size = 0;
+		}
 
+//		insert it
+
+//		erase it
+
+//		push_back
+		void push_back(const T& value)
+		{
+			if (_capacity < _size + 1)
+				reserve(_capacity * 2);
+			_alloc.construct(_array + _size, value);
+			_size++;
+		}
+
+//		pop_back
+//		resize
+//		swap
 
 		/* ------------------------- non-member functions ------------------------- */
 

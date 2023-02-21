@@ -32,31 +32,81 @@ namespace ft {
 
 		/* ------------------------- constructors ------------------------- */
 		explicit vector(const allocator_type &alloc = Allocator()) : _alloc(alloc), _size(0), _capacity(0), _array(NULL)
-		{}
+		{
+			std::cout << "Default constructor called" << std::endl;
+		}
 
 		// try ?
 		explicit vector(size_type n, const T &val = T(), const Allocator &alloc = Allocator()) :
 				_alloc(alloc), _size(n), _capacity(n), _array(_alloc.allocate(n))
 		{
+			std::cout << "Parametric constructor called" << std::endl;
 			for (size_type i = 0; i < _size; i++)
 				_alloc.construct(_array + i, val);
 		}
 
+//		it
 		template<class InputIt>
 		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator())
-		{}
+		{
+			std::cout << "Iterator constructor called" << std::endl;
+		}
 
-		vector(const vector &other)
-		{}
+		vector(const vector& other) : _alloc(other._alloc), _size(other._size), _capacity(other._capacity), _array
+		(_alloc.allocate(_capacity))
+		{
+			std::cout << "Copy constructor called" << std::endl;
+			for (size_type i = 0; i < _size; i++)
+				_alloc.construct(_array + i, other[i]);
+//			return *this;
+		}
 
 		/* ------------------------- destructors ------------------------- */
 		~vector()
-		{}
+		{
+			std::cout << "Destructor called" << std::endl;
+			for (size_type i = 0; i < _size; i++)
+				_alloc.destroy(_array + i);
+			if (_capacity)
+				_alloc.deallocate(_array, _capacity);
+		}
 
 		/* ------------------------- member functions ------------------------- */
+//		operator=
 		vector &operator=(const vector &other)
-		{}
+		{
+			std::cout << "Copy assignment operator called" << std::endl;
+			if (this == &other)
+				return *this;
+			for (size_type i = 0; i < _size; i++)
+				_alloc.destroy(_array + i);
+			_size = other._size;
+			if (_capacity < _size)
+			{
+				if (capacity() != 0)
+					_alloc.deallocate(_array, _capacity);
+				_capacity = _size;
+				_array = _alloc.allocate(_capacity);
+			}
+			for (size_type i = 0; i < _size; i++)
+				_alloc.construct(_array + i, other[i]);
+			return *this;
+		}
+
 //		assign
+		void assign(size_type count, const T& value)
+		{
+			clear();
+			if (count > _capacity)
+			{
+				_alloc.deallocate(_array, _capacity);
+				_array = _alloc.allocate(count);
+				_capacity = count;
+			}
+			for (size_type i = 0; i < count; i++)
+				_alloc.construct(_array + i, value);
+			_size = count;
+		}
 
 //		get_allocator
 		allocator_type get_allcator() const
@@ -89,8 +139,8 @@ namespace ft {
 		const_reference front() const { return _array[0]; }
 
 //		back
-		reference back() { return (_size - 1); }
-		const_reference back() const { return (_size - 1); }
+		reference back() { return _array[_size - 1]; }
+		const_reference back() const { return _array[_size - 1]; }
 
 //		data
 		pointer data() { return _array; }
@@ -152,10 +202,59 @@ namespace ft {
 		}
 
 //		pop_back
+		void pop_back()
+		{
+			_alloc.destroy(_array + _size);
+			_size--;
+		}
+
 //		resize
+		void resize(size_type count, T value = T())
+		{
+			if (count < _size)
+			{
+				for (size_type i = 0; i < _size; i++)
+					_alloc.destroy(_array + i);
+				_size = count;
+			}
+			else if (count > _size)
+			{
+				if (_capacity < count)
+					reserve(_capacity * 2 > count ? _capacity * 2 : count);
+				for (size_type i = _size; i < count; i++)
+				{
+					_alloc.construct(_array + i, value);
+					_size++;
+				}
+			}
+		}
+
 //		swap
+		void swap(vector& other)
+		{
+			if (this == &other)
+				return ;
+			allocator_type a = _alloc;
+			pointer p = _array;
+			size_type s = _size;
+			size_type c = _capacity;
+			_alloc = other._alloc;
+			_array = other._array;
+			_size = other._size;
+			_capacity = other._capacity;
+			other._alloc = a;
+			other._array = p;
+			other._size = s;
+			other._capacity = c;
+		}
 
 		/* ------------------------- non-member functions ------------------------- */
+//		friend bool operator==( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//		friend bool operator!=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//		friend bool operator<( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//		friend bool operator<=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//		friend bool operator>( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//		friend bool operator>=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
 
 	private:
 		allocator_type _alloc;
@@ -164,6 +263,34 @@ namespace ft {
 		pointer _array;
 	};
 
+	/* ------------------------- non-member functions ------------------------- */
+	template< class T, class Allocator >
+	bool operator==( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		if (lhs.size() != rhs.size())
+			return false;
+		for (size_t i = 0; i < rhs.size(); i++)
+			if (lhs[i] != rhs[i])
+				return false;
+		return true;
+	}
+
+	template< class T, class Allocator >
+	bool operator!=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		return !(lhs == rhs);
+	}
+
+//	it
+//	std::lexicographical_compare
+//	bool operator<( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+
+//	bool operator<=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//	bool operator>( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+//	bool operator>=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+
+	template< class T, class Alloc >
+	void swap( ft::vector<T, Alloc>& lhs, ft::vector<T, Alloc>& rhs ) { lhs.swap(rhs); }
 }
 
 #endif

@@ -10,6 +10,7 @@ int main()
 	std::vector<int> second(4, 100);
 	std::allocator<int> alloc;
 	ft::vector<int> myv(4);
+	ft::vector<int> twince(10);
 
 //	for (int i = 0; i < 10; i++)
 //	{
@@ -43,7 +44,7 @@ int main()
 	std::cout << "*capacity  = " << myv.capacity() << std::endl;
 	myv.push_back(99);
 	std::cout << "*size = " << myv.size() << std::endl;
-//	std::cout << "*back = " << myv.back() << std::endl;
+	std::cout << "*back = " << myv.back() << std::endl;
 	std::cout << "*capacity  = " << myv.capacity() << std::endl;
 	std::cout << "*at = " << myv.at(4) << std::endl;
 	myv.push_back(101);
@@ -53,6 +54,14 @@ int main()
 	std::cout << "*at = " << myv.at(6) << std::endl;
 	std::cout << "*size = " << myv.size() << std::endl;
 	std::cout << "*capacity  = " << myv.capacity() << std::endl;
-
+	myv.pop_back();
+//	std::cout << "*at = " << myv.at(6) << std::endl;
+	std::cout << "*size = " << myv.size() << std::endl;
+//	myv(twince);
+	myv = twince;
+	std::cout << "*size = " << myv.size() << std::endl;
+	myv.assign(99, 33);
+	std::cout << "*size = " << myv.size() << std::endl;
+	std::cout << "*at = " << myv.at(6) << std::endl;
 	return 0;
 }

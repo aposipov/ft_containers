@@ -2,9 +2,7 @@
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
-#include <iostream>
-//#include
-//#include "iterator.h"
+#include "Iterator.hpp"
 
 namespace ft {
 
@@ -56,9 +54,9 @@ namespace ft {
 		(_alloc.allocate(_capacity))
 		{
 			std::cout << "Copy constructor called" << std::endl;
-			for (size_type i = 0; i < _size; i++)
-				_alloc.construct(_array + i, other[i]);
-//			return *this;
+//			for (size_type i = 0; i < _size; i++)
+//				_alloc.construct(_array + i, other[i]);
+//			*this = other;
 		}
 
 		/* ------------------------- destructors ------------------------- */

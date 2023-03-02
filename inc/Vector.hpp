@@ -23,10 +23,10 @@ namespace ft {
 		typedef typename Allocator::const_pointer const_pointer;
 
 		/* ------------------------- iterators ------------------------- */
-//		typedef random_access_it<T>						iterator;
-//		typedef	random_access_it<const T>				const_iterator;
-//		typedef reverse_it<iterator>					reverse_iterator;
-//		typedef reverse_it<const_iterator>				const_reverse_iterator;
+		typedef random_access_iterator<T>					iterator;
+		typedef	random_access_iterator<const T>				const_iterator;
+		typedef reverse_iterator<iterator>					reverse_iterator;
+		typedef reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		/* ------------------------- constructors ------------------------- */
 		explicit vector(const allocator_type &alloc = Allocator()) : _alloc(alloc), _size(0), _capacity(0), _array(NULL)
@@ -56,7 +56,7 @@ namespace ft {
 			std::cout << "Copy constructor called" << std::endl;
 //			for (size_type i = 0; i < _size; i++)
 //				_alloc.construct(_array + i, other[i]);
-//			*this = other;
+			*this = other;
 		}
 
 		/* ------------------------- destructors ------------------------- */

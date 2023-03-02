@@ -57,7 +57,9 @@ int main()
 	myv.pop_back();
 //	std::cout << "*at = " << myv.at(6) << std::endl;
 	std::cout << "*size = " << myv.size() << std::endl;
-//	myv(twince);
+//	ft::vector<int> myv2(twince);
+	ft::vector<int> ex(twince);
+	std::cout << "*ex = " << ex.size() << std::endl;
 	myv = twince;
 	std::cout << "*size = " << myv.size() << std::endl;
 	myv.assign(99, 33);

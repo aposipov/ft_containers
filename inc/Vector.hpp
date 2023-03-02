@@ -13,20 +13,20 @@ namespace ft {
 	public:
 
 		/* ------------------------- member types ------------------------- */
-		typedef T value_type;
-		typedef Allocator allocator_type;
-		typedef std::size_t size_type;
-		typedef std::ptrdiff_t difference_type;
-		typedef value_type &reference;
-		typedef const value_type &const_reference;
-		typedef typename Allocator::pointer pointer;
-		typedef typename Allocator::const_pointer const_pointer;
+		typedef T									value_type;
+		typedef Allocator							allocator_type;
+		typedef std::size_t							size_type;
+		typedef std::ptrdiff_t						difference_type;
+		typedef value_type							&reference;
+		typedef const value_type					&const_reference;
+		typedef typename Allocator::pointer			pointer;
+		typedef typename Allocator::const_pointer	const_pointer;
 
 		/* ------------------------- iterators ------------------------- */
-		typedef random_access_iterator<T>					iterator;
-		typedef	random_access_iterator<const T>				const_iterator;
-//		typedef reverse_iterator<iterator>					reverse_iterator;
-//		typedef reverse_iterator<const_iterator>			const_reverse_iterator;
+		typedef ft::random_access_iterator<T>					iterator;
+		typedef	ft::random_access_iterator<const T>				const_iterator;
+		typedef ft::reverse_iterator<iterator>					reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		/* ------------------------- constructors ------------------------- */
 		explicit vector(const allocator_type &alloc = Allocator()) : _alloc(alloc), _size(0), _capacity(0), _array(NULL)

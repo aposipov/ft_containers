@@ -30,7 +30,51 @@ class random_access_iterator : public ft::iterator<random_access_iterator_tag, T
 		}
 		~random_access_iterator() {}
 
+		/* ------------------------- *a a->m ------------------------- */
+		reference operator*() const { return *_it; }
+		pointer operator->() const { return _it; }
 
+		/* ------------------------- *a = t ------------------------- */
+
+		/* ------------------------- ++a a++ *a++ ------------------------- */
+		random_access_iterator& operator++()
+		{
+			++_it;
+			return *this;
+		}
+
+
+
+		/* ------------------------- --a a-- *a-- ------------------------- */
+		random_access_iterator& operator--()
+		{
+			--_it;
+			return *this;
+		}
+
+		/* ------------------------- a+n n+a a-n a-b ------------------------- */
+		random_access_iterator& operator+(difference_type n) const
+		{
+			random_access_iterator tmp(_it + n);
+			return tmp;
+		}
+
+//		difference_type operator+()
+
+		/* ------------------------- a+=n a-=n ------------------------- */
+		random_access_iterator& operator+=(difference_type n) { return _it = _it + n; }
+		random_access_iterator& operator-=(difference_type n) { return _it = _it - n; }
+
+		/* ------------------------- a[n] ------------------------- */
+		reference operator[](difference_type n) { return *(n + _it); }
+
+		/* ------------------------- == != a<b a>b a<=b a>=b ------------------------- */
+		bool operator==(const random_access_iterator& it) const { return _it == it._it; }
+		bool operator!=(const random_access_iterator& it) const { return _it != it._it; }
+		bool operator<(const random_access_iterator& it) const { return _it < it._it; }
+		bool operator>(const random_access_iterator& it) const { return _it > it._it; }
+		bool operator<=(const random_access_iterator& it) const { return _it <= it._it; }
+		bool operator>=(const random_access_iterator& it) const { return _it >= it._it; }
 	};
 }
 

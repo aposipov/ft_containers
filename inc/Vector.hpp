@@ -25,8 +25,8 @@ namespace ft {
 		/* ------------------------- iterators ------------------------- */
 		typedef random_access_iterator<T>					iterator;
 		typedef	random_access_iterator<const T>				const_iterator;
-		typedef reverse_iterator<iterator>					reverse_iterator;
-		typedef reverse_iterator<const_iterator>			const_reverse_iterator;
+//		typedef reverse_iterator<iterator>					reverse_iterator;
+//		typedef reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		/* ------------------------- constructors ------------------------- */
 		explicit vector(const allocator_type &alloc = Allocator()) : _alloc(alloc), _size(0), _capacity(0), _array(NULL)

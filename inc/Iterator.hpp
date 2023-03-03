@@ -36,7 +36,7 @@ namespace ft {
 
 		/* ------------------------- *a = t ------------------------- */
 
-//		???
+//		??? *a=t
 		/* ------------------------- ++a a++ *a++ ------------------------- */
 		random_access_iterator& operator++()
 		{
@@ -51,7 +51,7 @@ namespace ft {
 			return tmp;
 		}
 
-//		???
+//		??? *a++
 
 		/* ------------------------- --a a-- *a-- ------------------------- */
 		random_access_iterator& operator--()
@@ -73,7 +73,7 @@ namespace ft {
 			random_access_iterator tmp(_it + n);
 			return tmp;
 		}
-//		???
+//		??? n+a
 //		difference_type operator+()
 
 		/* ------------------------- a+=n a-=n ------------------------- */

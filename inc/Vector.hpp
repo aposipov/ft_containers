@@ -3,6 +3,7 @@
 #define FT_CONTAINERS_VECTOR_HPP
 
 #include "Iterator.hpp"
+#include "utilities.hpp"
 
 namespace ft {
 
@@ -105,6 +106,9 @@ namespace ft {
 				_alloc.construct(_array + i, value);
 			_size = count;
 		}
+
+		template <class InputIterator>
+		void assign (InputIterator first, InputIterator last) {}
 
 //		get_allocator
 		allocator_type get_allcator() const

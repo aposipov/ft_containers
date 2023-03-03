@@ -291,13 +291,29 @@ namespace ft {
 		return !(lhs == rhs);
 	}
 
-//	it
-//	std::lexicographical_compare
-//	bool operator<( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+	template< class T, class Allocator >
+	bool operator<( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	}
 
-//	bool operator<=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//	bool operator>( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//	bool operator>=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
+	template< class T, class Allocator >
+	bool operator<=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		return !(lhs > rhs);
+	}
+
+	template< class T, class Allocator >
+	bool operator>( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		return rhs < lhs;
+	}
+
+	template< class T, class Allocator >
+	bool operator>=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs )
+	{
+		return !(lhs < rhs);
+	}
 
 	template< class T, class Alloc >
 	void swap( ft::vector<T, Alloc>& lhs, ft::vector<T, Alloc>& rhs ) { lhs.swap(rhs); }

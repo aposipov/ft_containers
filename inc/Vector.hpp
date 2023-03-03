@@ -144,9 +144,16 @@ namespace ft {
 		pointer data() { return _array; }
 		const_pointer data() const { return _array; }
 
-		/* ------------------------- iterators m ------------------------- */
-//		iterators
-//		rever iterators
+		/* ------------------------- iterators ------------------------- */
+		iterator begin() { return _array; }
+		const_iterator begin() const {return _array; }
+		iterator end() { return _array + _size; }
+		const_iterator end() const { return _array + _size; }
+
+		reverse_iterator rbegin() { return reverse_iterator(end()); }
+		reverse_iterator rbegin() const { return reverse_iterator(end()); }
+		reverse_iterator rend() { return reverse_iterator(begin()); }
+		reverse_iterator rend() const { return reverse_iterator(begin()); }
 
 		/* ------------------------- capacity ------------------------- */
 //		empty
@@ -187,8 +194,17 @@ namespace ft {
 		}
 
 //		insert it
+		iterator insert(iterator position, const value_type& val) {}
+
+		void insert(iterator position, size_type n, const value_type& val) {}
+
+		template<class InputIterator>
+		void insert(iterator position, InputIterator first, InputIterator last) {}
 
 //		erase it
+		iterator erase(iterator position) {}
+
+		iterator erase(iterator first, iterator last) {}
 
 //		push_back
 		void push_back(const T& value)
@@ -245,14 +261,6 @@ namespace ft {
 			other._size = s;
 			other._capacity = c;
 		}
-
-		/* ------------------------- non-member functions ------------------------- */
-//		friend bool operator==( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//		friend bool operator!=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//		friend bool operator<( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//		friend bool operator<=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//		friend bool operator>( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
-//		friend bool operator>=( const std::vector<T, Allocator>& lhs, const std::vector<T, Allocator>& rhs );
 
 	private:
 		allocator_type _alloc;

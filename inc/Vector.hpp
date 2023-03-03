@@ -8,8 +8,7 @@
 namespace ft {
 
 	template < class T, class Allocator = std::allocator<T> >
-	class vector
-	{
+	class vector {
 
 	public:
 
@@ -46,9 +45,24 @@ namespace ft {
 
 //		it
 		template<class InputIt>
-		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator())
+		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()) : _alloc(alloc)
 		{
 			std::cout << "Iterator constructor called" << std::endl;
+			size_t size = 0;
+			for (InputIt tmp = first; tmp != last; ++tmp)
+				size++;
+			try
+			{
+				_size = size;
+				_capacity = size;
+				_array = _alloc.allocate(_capacity);
+				for (size_type i = 0; i < _size; first++)
+					_alloc.construct(_array + i, *first);
+			}
+			catch (const std::exception& e)
+			{
+				throw ;
+			}
 		}
 
 		vector(const vector& other) : _alloc(other._alloc), _size(other._size), _capacity(other._capacity), _array
@@ -108,7 +122,11 @@ namespace ft {
 		}
 
 		template <class InputIterator>
-		void assign (InputIterator first, InputIterator last) {}
+		void assign (InputIterator first, InputIterator last)
+		{
+			clear();
+			insert(begin(), first, last);
+		}
 
 //		get_allocator
 		allocator_type get_allcator() const
@@ -198,17 +216,200 @@ namespace ft {
 		}
 
 //		insert it
-		iterator insert(iterator position, const value_type& val) {}
+		iterator insert(iterator position, const value_type& val)
+		{
+			size_type sz = 0;
 
-		void insert(iterator position, size_type n, const value_type& val) {}
+			if (position > this->end() || position < this->begin())
+				throw std::out_of_range("vector");
+			try
+			{
+				if (_size < _capacity)
+				{
+					for (iterator it = this->end(); position < it; it--)
+					{
+						if (it == this->end())
+							_alloc.construct(&(*it), it[-1]);
+						else
+							it[0] = it[-1];
+					}
+					position[0] = val;
+					_size++;
+					return position;
+				}
+				pointer p = 0;
+				size_type new_cap;
+				iterator it = this->begin();
+
+				if (_size)
+					new_cap = 2 * _capacity;
+				else
+					new_cap = 1;
+				p = _alloc.allocate(new_cap);
+				for (; it != position && sz < _size; ++it, ++sz)
+					_alloc.construct(p + sz, (*this)[sz]);
+				_alloc.construct(p + sz, val);
+				for (size_type i = sz; i < _size; ++i)
+					_alloc.construct(p + i + 1, (*this)[i]);
+				for (size_type i = 0; i < _size; ++i)
+					_alloc.destroy(_array + i);
+				_alloc.deallocate(_array, _capacity);
+				_capacity = new_cap;
+				_size += 1;
+				_array = p;
+			}
+			catch(const std::exception& e)
+			{
+				throw;
+			}
+			return ((*this).begin() + sz);
+		}
+
+		void insert(iterator position, size_type n, const value_type& val)
+		{
+			size_type sz = 0;
+
+			if (!n)
+				return ;
+			if (position > this->end() || position < this->begin())
+				throw std::out_of_range("vector");
+			try
+			{
+				if (!(_size + n > _capacity))
+				{
+					for (iterator it = this->end() + n - 1; !(position > it); it--)
+					{
+						if (it >= this->end())
+							_alloc.construct(&(*it), it[-n]);
+						else if (position + n - 1 < it)
+							it[0] = it[-n];
+						else
+							it[0] = val;
+					}
+					_size += n;
+					return ;
+				}
+				pointer p = 0;
+				size_type new_cap;
+				iterator it = this->begin();
+
+				if (_size && 2 * _capacity > _size + n)
+					new_cap = 2 * _capacity;
+				else if (_size)
+					new_cap = _size + n;
+				else
+					new_cap = n;
+				p = _alloc.allocate(new_cap);
+				for (; it != position && sz < _size; ++it, ++sz)
+					_alloc.construct(p + sz, (*this)[sz]);
+				for (size_type i = 0; i < n; ++i)
+					_alloc.construct(p + sz + i, val);
+				for (size_type i = sz; i < _size; ++i)
+					_alloc.construct(p + i + n, (*this)[i]);
+				for (size_type i = 0; i < _size; ++i)
+					_alloc.destroy(_array + i);
+				_alloc.deallocate(_array, _capacity);
+				_capacity = new_cap;
+				_size += n;
+				_array = p;
+			}
+			catch(const std::exception& e)
+			{
+				throw;
+			}
+			return ;
+		}
 
 		template<class InputIterator>
-		void insert(iterator position, InputIterator first, InputIterator last) {}
+		void insert(iterator position, InputIterator first, InputIterator last)
+		{
+			size_type sz = 0;
+			size_type count = 0;
+
+			if (position > this->end() || position < this->begin())
+				throw std::out_of_range("vector");
+			for (InputIterator tmp = first; tmp != last; tmp++)
+				count++;
+			if (!count)
+				return ;
+			try
+			{
+				if (!(_size + count > _capacity))
+				{
+					for (iterator it = this->end() + count - 1; position < it; it--)
+					{
+						if (it >= this->end())
+							_alloc.construct(&(*it), it[-count]);
+						else if (position + count - 1 < it)
+							it[0] = it[-count];
+					}
+					for (iterator it = position; first != last; it++, first++)
+						it[0] = first;
+					_size += count;
+					return ;
+				}
+				pointer p = 0;
+				size_type new_cap;
+				iterator it = this->begin();
+
+				if (_size && 2 * _capacity > _size + count)
+					new_cap = 2 * _capacity;
+				else if (_size)
+					new_cap = _size + count;
+				else
+					new_cap = count;
+				p = _alloc.allocate(new_cap);
+				for (; it != position && sz < _size; ++it, ++sz)
+					_alloc.construct(p + sz, (*this)[sz]);
+				for (size_type i = 0; i < count; ++i, ++first)
+					_alloc.construct(p + sz + i, first);
+				for (size_type i = sz; i < _size; ++i)
+					_alloc.construct(p + i + count, (*this)[i]);
+				for (size_type i = 0; i < _size; ++i)
+					_alloc.destroy(_array + i);
+				_alloc.deallocate(_array, _capacity);
+				_capacity = new_cap;
+				_size += count;
+				_array = p;
+			}
+			catch(const std::exception& e)
+			{
+				throw;
+			}
+			return ;
+		}
 
 //		erase it
-		iterator erase(iterator position) {}
+		iterator erase(iterator position)
+		{
+			if (position < this->begin() || position >= this->end())
+				throw std::out_of_range("vector");
+			for (iterator it = position; it < this->end(); it++)
+			{
+				if (it + 1 != this->end())
+					it[0] = it[1];
+				else
+					_alloc.destroy(&(*it));
+			}
+			_size--;
+			return position;
+		}
 
-		iterator erase(iterator first, iterator last) {}
+		iterator erase(iterator first, iterator last)
+		{
+			if (first < this->begin() || last > this->end() || first > last)
+				throw std::out_of_range("vector");
+			size_type sz = last - first;
+			for (iterator it = last; first < this->end() && sz; it++, first++)
+			{
+				if (it < this->end())
+					first[0] = it[0];
+				else
+					_alloc.destroy(&(*first));
+			}
+			_size -= sz;
+			return last;
+		}
 
 //		push_back
 		void push_back(const T& value)

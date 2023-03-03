@@ -5,6 +5,7 @@
 #include "Iterator_traits.hpp"
 
 namespace ft {
+
 	template <typename T>
 	class random_access_iterator : public ft::iterator<random_access_iterator_tag, T> {
 
@@ -73,8 +74,19 @@ namespace ft {
 			random_access_iterator tmp(_it + n);
 			return tmp;
 		}
+
+		random_access_iterator operator+(int i) {return _it + i; }
+
 //		??? n+a
 //		difference_type operator+()
+
+		random_access_iterator& operator-(difference_type n) const
+		{
+			random_access_iterator tmp(_it - n);
+			return tmp;
+		}
+
+		random_access_iterator operator-(int i) {return _it - i; }
 
 		/* ------------------------- a+=n a-=n ------------------------- */
 		random_access_iterator& operator+=(difference_type n) { return _it = _it + n; }

@@ -2,6 +2,7 @@
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
+#include <iostream>
 #include "Iterator.hpp"
 #include "utilities.hpp"
 

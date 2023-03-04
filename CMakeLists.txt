@@ -7,4 +7,5 @@ add_compile_options(-Wall -Wextra -Werror)
 include_directories(inc)
 
 add_executable(ft_containers
-		src/test_vector.cpp)
+#		src/test_vector.cpp
+		src/test_stack.cpp)

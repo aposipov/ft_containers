@@ -17,7 +17,10 @@ namespace ft {
 		typedef typename Container::const_reference		const_reference;
 
 	protected:
+
 		Container _ctnr;
+
+	public:
 
 		explicit stack(const container_type& ctnr = container_type()) : _ctnr(ctnr) {}
 
@@ -41,7 +44,7 @@ namespace ft {
 		size_type size() const { return _ctnr.size(); }
 
 //		push
-		void push(const value_type& val) { return _ctnr.push_back(); }
+		void push(const value_type& val) { return _ctnr.push_back(val); }
 
 //		pop
 		void pop() { return _ctnr.pop_back(); }

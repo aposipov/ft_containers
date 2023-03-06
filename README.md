@@ -13,5 +13,5 @@
 [C++ ФПМИ 1 курс лекции основной поток 2020-2021](https://www.youtube.com/watch?v=9WO24IJQP_Q&list=PLmSYEYYGhnBu1fFtnzKx-pycYbJnb0rOl&index=1)   
 [Продвинутое программирование на C++ (1 курс, весна 2022)](https://www.youtube.com/watch?v=RwziYcZD2-E&list=PL4_hYwCyhAvaWsj3-0gLH_yEZfKdTife0)  
 ## video
-[C++ lectures, MIPT](https://www.youtube.com/playlist?list=PL3BR09unfgcgJPQZKaacwzGmcXMtEA-19)
+[C++ lectures, MIPT](https://www.youtube.com/playlist?list=PL3BR09unfgcgJPQZKaacwzGmcXMtEA-19)  
 [Лекции по курсу "Алгоритмы и структуры данных", Мацкевич](https://www.youtube.com/playlist?list=PLthfp5exSWErF2416Jtiosix0ywANghVa)

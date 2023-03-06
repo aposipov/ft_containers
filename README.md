@@ -14,3 +14,4 @@
 [Продвинутое программирование на C++ (1 курс, весна 2022)](https://www.youtube.com/watch?v=RwziYcZD2-E&list=PL4_hYwCyhAvaWsj3-0gLH_yEZfKdTife0)  
 ## video
 [C++ lectures, MIPT](https://www.youtube.com/playlist?list=PL3BR09unfgcgJPQZKaacwzGmcXMtEA-19)
+[Лекции по курсу "Алгоритмы и структуры данных", Мацкевич](https://www.youtube.com/playlist?list=PLthfp5exSWErF2416Jtiosix0ywANghVa)

@@ -45,6 +45,7 @@ namespace ft {
 		}
 
 //		it
+//		enable_if add
 		template<class InputIt>
 		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()) : _alloc(alloc)
 		{

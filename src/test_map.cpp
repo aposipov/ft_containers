@@ -1,9 +1,10 @@
 
-#include "Pair.hpp"
+//#include "Pair.hpp"
+//#include <iostream>
+#include "Map.hpp"
 
 int main()
 {
-
 	std::pair<std::string, int> pair;
 	std::pair<std::string, int> pair1("std pair", 21);
 	std::pair<std::string, int> pair2(pair1);

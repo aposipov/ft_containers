@@ -2,7 +2,7 @@
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
-#include <iostream>
+//#include <iostream>
 #include "Iterator.hpp"
 #include "utilities.hpp"
 
@@ -46,7 +46,7 @@ namespace ft {
 
 //		it
 //		enable_if add
-		template<class InputIt>
+		template <class InputIt>
 		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()) : _alloc(alloc)
 		{
 			std::cout << "Iterator constructor called" << std::endl;

@@ -2,9 +2,19 @@
 #ifndef FT_CONTAINERS_UTILITIES_HPP
 #define FT_CONTAINERS_UTILITIES_HPP
 
+#include <iostream>
+
 namespace ft {
 
-	template< class InputIt1, class InputIt2 >
+	template <class T>
+	struct less {
+		bool operator()( const T& lhs, const T& rhs ) const
+		{
+			return lhs < rhs;
+		}
+	};
+
+	template < class InputIt1, class InputIt2 >
 	bool lexicographical_compare( InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2 )
 	{
 		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2)
@@ -17,7 +27,7 @@ namespace ft {
 		return (first1 == last1) && (first2 != last2);
 	}
 
-	template< class InputIt1, class InputIt2, class Compare >
+	template < class InputIt1, class InputIt2, class Compare >
 	bool lexicographical_compare( InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Compare comp )
 	{
 		for (; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2)

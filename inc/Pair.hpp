@@ -2,8 +2,6 @@
 #ifndef FT_CONTAINERS_PAIR_HPP
 #define FT_CONTAINERS_PAIR_HPP
 
-#include <iostream>
-
 namespace ft {
 
 	template<class T1, class T2>

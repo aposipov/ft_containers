@@ -31,8 +31,31 @@ namespace ft {
 			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
 			class value_compare {
-
+				friend class map;
+			protected:
+				Compare comp;
+				value_compare(Compare c) : comp(c) {}
+			public:
+				bool operator()(const value_type& x, const value_type& y) const
+				{
+					return comp(x.first, y.first);
+				}
 			};
+
+			/* ------------------------- constructors ------------------------- */
+//			map() {}
+
+			explicit map(const Compare& comp, const Allocator& alloc = Allocator()) {}
+
+			template < class InputIt >
+			map(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator()) {}
+
+			map(const map& x) {}
+			/* ------------------------- destructor ------------------------- */
+
+			~map();
+
+
 	};
 }
 

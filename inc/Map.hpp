@@ -30,6 +30,8 @@ namespace ft {
 			typedef ft::reverse_iterator<iterator>			reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
+
+
 			class value_compare {
 
 				friend class map;
@@ -44,6 +46,8 @@ namespace ft {
 					return comp(x.first, y.first);
 				}
 			};
+
+//			typedef rbtree<value_type, value_compare, allocator_type> rbtree;
 
 			/* ------------------------- constructors ------------------------- */
 //			map() {}

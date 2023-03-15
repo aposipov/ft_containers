@@ -21,4 +21,6 @@ int main()
 	std::cout << my_pair.first << ", " << my_pair.second << std::endl;
 	std::cout << my_pair1.first << ", " << my_pair1.second << std::endl;
 	std::cout << my_pair2.first << ", " << my_pair2.second << std::endl;
+
+	ft::Node<int> node;
 }

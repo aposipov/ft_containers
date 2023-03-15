@@ -4,6 +4,7 @@
 
 //#include <iostream>
 #include "Pair.hpp"
+#include "Node.hpp"
 #include "Iterator.hpp"
 #include "utilities.hpp"
 
@@ -136,7 +137,7 @@ namespace ft {
 			/* ------------------------- observers ------------------------- */
 			key_compare key_comp() const;
 
-			ft::map::value_compare value_comp() const;
+			map::value_compare value_comp() const;
 
 	};
 

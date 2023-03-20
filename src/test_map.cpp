@@ -22,5 +22,6 @@ int main()
 	std::cout << my_pair1.first << ", " << my_pair1.second << std::endl;
 	std::cout << my_pair2.first << ", " << my_pair2.second << std::endl;
 
-	ft::Node<int> node;
+//	ft::Node<std::string, int> node("test", 1);
+//	std::cout << node.value << node.right << std::endl;
 }

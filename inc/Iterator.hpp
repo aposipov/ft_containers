@@ -7,37 +7,37 @@
 
 namespace ft {
 
-	template <class Key, class T>
-	class rbtree_iterator {
-
-		public:
-			typedef Key key_type;
-			typedef T mapped_type;
-			typedef ft::pair<const key_type, mapped_type> value_type;
-			typedef Node<Key, T>* node_pointer;
-			typedef std::ptrdiff_t difference_type;
-			typedef value_type& reference;
-			typedef value_type* pointer;
-			typedef ft::bidirectional_iterator_tag iterator_category;
-
-			rbtree_iterator();
-			rbtree_iterator(node_pointer ptr);
-			rbtree_iterator(const rbtree_iterator& other);
-			~rbtree_iterator();
-
-			rbtree_iterator& operator=(const rbtree_iterator& other);
-			reference operator*() const;
-			pointer operator->() const;
-			rbtree_iterator& operator++();
-			rbtree_iterator operator++(int);
-			rbtree_iterator& operator--();
-			rbtree_iterator operator--(int);
-			bool operator==(const rbtree_iterator& other) const;
-			bool operator!=(const rbtree_iterator& other) const;
-
-		private:
-			node_pointer _ptr;
-	};
+//	template <class Key, class T>
+//	class rbtree_iterator {
+//
+//		public:
+//			typedef Key key_type;
+//			typedef T mapped_type;
+//			typedef ft::pair<const key_type, mapped_type> value_type;
+//			typedef Node<Key, T>* node_pointer;
+//			typedef std::ptrdiff_t difference_type;
+//			typedef value_type& reference;
+//			typedef value_type* pointer;
+//			typedef ft::bidirectional_iterator_tag iterator_category;
+//
+//			rbtree_iterator();
+//			rbtree_iterator(node_pointer ptr);
+//			rbtree_iterator(const rbtree_iterator& other);
+//			~rbtree_iterator();
+//
+//			rbtree_iterator& operator=(const rbtree_iterator& other);
+//			reference operator*() const;
+//			pointer operator->() const;
+//			rbtree_iterator& operator++();
+//			rbtree_iterator operator++(int);
+//			rbtree_iterator& operator--();
+//			rbtree_iterator operator--(int);
+//			bool operator==(const rbtree_iterator& other) const;
+//			bool operator!=(const rbtree_iterator& other) const;
+//
+//		private:
+//			node_pointer _ptr;
+//	};
 
 	template <typename T>
 	class random_access_iterator : public ft::iterator<random_access_iterator_tag, T> {

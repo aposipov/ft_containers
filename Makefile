@@ -14,8 +14,8 @@ GREEN= \033[1;32m
 NC= \033[0;0m
 
 
-INC		=	inc/Vector.hpp
-SRC		=	src/main.cpp
+INC		=	inc/Vector.hpp #inc/Stack.hpp inc/Map.hpp inc/Set.hpp
+SRC		=	src/main_test.cpp
 
 all:		$(NAME)
 

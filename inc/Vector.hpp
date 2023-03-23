@@ -47,7 +47,8 @@ namespace ft {
 //		it
 //		enable_if add
 		template <class InputIt>
-		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()) : _alloc(alloc)
+		vector(typename enable_if<is_iterator<InputIt>::value, InputIt>::type first, InputIt last, const Allocator &alloc = Allocator()) : _alloc
+		(alloc)
 		{
 			std::cout << "Iterator constructor called" << std::endl;
 			size_t size = 0;
@@ -123,8 +124,8 @@ namespace ft {
 			_size = count;
 		}
 
-		template <class InputIterator>
-		void assign (InputIterator first, InputIterator last)
+		template <class InputIt>
+		void assign (typename enable_if<is_iterator<InputIt>::value, InputIt>::type first, InputIt last)
 		{
 			clear();
 			insert(begin(), first, last);
